@@ -1,0 +1,18 @@
+<%= simple_form_for([@pictureshot, @pictureshot.comments.build]) do |f| %>
+        <div class="card-body">
+
+           
+
+           <%= f.input :name, require: true, input_html: { class: "form-control" }, wrapper: false, label_html: { class: "label" } %>
+
+          
+
+
+             <%= f.input :response, require: true, input_html: { class: "form-control" }, wrapper: false, label_html: { class: "label" } %>
+       
+          <br>
+    <%= f.button :submit, 'Leave a reply', class: 'btn btn-primary' %>
+
+
+     </div>
+<% end %>
