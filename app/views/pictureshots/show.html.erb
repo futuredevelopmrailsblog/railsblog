@@ -1,0 +1,75 @@
+<div class="col-md-6">
+ <!-- CARD WITH HEADER -->
+        <div class="card">
+            <div class="card-header">
+                My Card
+            </div>
+
+
+<div class="card-body">
+
+
+    <%= gravatar_image_tag(@pictureshot.user.email.gsub('spam', 'mdeering'), alt: @pictureshot.user.name, gravatar: { size: 20 }); %>
+  <h4 class="card-title">Title:</h4>
+  <h4 class="card-title"><%= @pictureshot.title %></h4>
+   <%= link_to image_tag(@pictureshot.user_pictureshot.url, :size => "260x260") unless @pictureshot.user.blank? %>
+
+<p>
+  <strong>Description:</strong>
+  <%= @pictureshot.description %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= picturedate(@pictureshot.created_at) %>
+</p>
+
+
+<% if user_signed_in? && (current_user.id == @pictureshot.user_id) %>
+
+<%= link_to 'Edit', edit_pictureshot_path(@pictureshot) %> |
+<%= link_to 'Back', pictureshots_path %> |
+
+
+<%= link_to 'Delete', pictureshot_path, class: "button", method: :delete, data: { confirm: 'Are you sure you want to delete this shot?'} %>
+
+
+
+<% end %>
+
+
+
+
+   
+
+
+
+</div>
+
+
+<div class="card">
+            <div class="card-header">
+                Comments
+            </div>
+
+<div class="card-body">
+
+           <div class="d-flex justify-content-between align-items-center">  
+             <span class="icon"><i class="fa fa-eye" aria-hidden="true"></i></span>0 Views
+
+      
+       
+            <span class="icon"><i class="fa fa-comment" aria-hidden="true"></i></span>0
+
+          <%#= pluralize(@pictureshot.comments.count, 'Comment') %>
+        
+        
+         
+            <span class="icon"><i class="fa fa-heart" aria-hidden="true"></i> 
+             </span>0
+       </div>
+
+</div>
+</div>
+</div>
+</div>

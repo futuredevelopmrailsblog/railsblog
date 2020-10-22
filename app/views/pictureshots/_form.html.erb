@@ -1,0 +1,55 @@
+<div class="col-md-6">
+<div class="card">
+    <div class="card-header">
+
+      </div>
+
+      <div class="card-body">
+
+
+    
+<%= simple_form_for @pictureshot, html: { multipart: true } do |f| %>
+
+
+ 
+   
+        <% unless @pictureshot.user_pictureshot.blank? %>
+    <%= image_tag (@pictureshot.user_pictureshot_url), id: "previewImage" %>
+    <% end %>
+
+    <output id="list"></output>
+    <div id="drop_zone">Drag your shot here</div>
+    <br />
+
+
+
+     <%= f.input :user_pictureshot, as: :hidden, label: false, input_html: { class: "", type: "file" }, wrapper: false, label_html: { class: "file-label" } %>
+
+
+      <br>
+
+         <%= f.input :title, require: true, input_html: { class: "form-control" }, wrapper: false, label_html: { class: "label" } %>
+
+
+
+
+   
+         <%= f.input :description, input_html: { class: 'form-control'}, wrapper: false,
+    label_html: { class: 'label'} %>
+
+
+    
+  
+
+ 
+    <%= f.button :submit %>
+
+
+  </div>
+  
+<% end %>
+
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+<main role="main">
+
+      <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Album example</h1>
+          <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
+          <p>
+            <a href="#" class="btn btn-primary my-2">Main call to action</a>
+            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+          </p>
+        </div>
+      </section>
+
+      <div class="album py-5 bg-light">
+        <div class="container">
+
+          <div class="row">
+            <% @pictureshots.each do |pictureshot| %>
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                
+
+
+                <%= image_tag(pictureshot.user_pictureshot_url, class: "card-img-top") %>
+                <div class="card-body">
+                  <p class="card-text"><%= pictureshot.title %></p>
+                  <p class="card-text"><%= truncate(pictureshot.description, length: 60)  %></p>
+                  <p class="card-text"><%= time_ago_in_words(pictureshot.created_at) %></p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                     
+                      <%= link_to 'Destroy', pictureshot, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-secondary' %>
+
+
+                      
+                    </div>
+                    <%= link_to pictureshot do %>
+                  <span class="icon data"><i class="fa fa-eye"></i></span>
+                  0
+                <% end %>
+
+                <%= link_to pictureshot do %>
+                  <span class="icon data"><i class="fa fa-comment"></i></span>
+                  0
+                <% end %>
+
+
+                <div class="level-item likes">
+                  <%= link_to '' do %>
+                  <span class="icon"><i class="fa fa-heart"></i></span>
+                  <span class="vote_count"></span>
+                  <% end %>
+                  </div>
+                </div>
+              </div>
+
+               <div class="user-data">
+          <div class="user-thumb">
+            <%= gravatar_image_tag(pictureshot.user.email.gsub('spam', 'mdeering'), alt: pictureshot.user.name, gravatar: { size: 20 }) %>
+          </div>
+           <div class="user-name"><%= pictureshot.user.name %></div>
+
+              <td><%= link_to 'Show', pictureshot %></td>
+        <td><%= link_to 'Edit', edit_pictureshot_path(pictureshot) %></td>
+        <td><%= link_to 'Destroy', pictureshot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </div>
+
+            
+        </div>
+            <% end %>
+            
+             <%= link_to 'New Pictureshot', new_pictureshot_path %>
+            
+          </div>
+
+         
+        </div>
+      </div>
+
+    </main>
+
