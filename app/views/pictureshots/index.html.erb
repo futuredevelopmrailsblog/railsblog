@@ -1,40 +1,25 @@
-<main role="main">
-
-      <section class="jumbotron text-center">
-        <div class="container">
-          <h1 class="jumbotron-heading">Album example</h1>
-          <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
-          <p>
-            <a href="#" class="btn btn-primary my-2">Main call to action</a>
-            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-          </p>
-        </div>
-      </section>
-
-      <div class="album py-5 bg-light">
-        <div class="container">
-
-          <div class="row">
-            <% @pictureshots.each do |pictureshot| %>
-            <div class="col-md-4">
-              <div class="card mb-4 box-shadow">
-                
+<main role="main" class="container">
+  <div class="row">
+    <div class="col-md-8 blog-main">
+      <h3 class="pb-4 mb-4 font-italic border-bottom">
+        From the Firehose
+      </h3>
+      
+      <% @pictureshots.each do |pictureshot| %>
+      <div class="blog-post">
+        <h2 class="blog-post-title">Sample blog post</h2>
+       
+       <%= image_tag(pictureshot.user_pictureshot_url, :size => "260x260") %>
 
 
-                <%= image_tag(pictureshot.user_pictureshot_url, class: "card-img-top") %>
-                <div class="card-body">
-                  <p class="card-text"><%= pictureshot.title %></p>
-                  <p class="card-text"><%= truncate(pictureshot.description, length: 60)  %></p>
-                  <p class="card-text"><%= time_ago_in_words(pictureshot.created_at) %></p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                     
-                     
+
+        <p><%= pictureshot.title %></p>
+
+         <p><%= truncate(pictureshot.description, length: 60)  %></p>
+        <hr>
 
 
-                      
-                    </div>
-                    <%= link_to pictureshot do %>
+           <%= link_to pictureshot do %>
                   <span class="icon data"><i class="fa fa-eye"></i></span>
                   0
                 <% end %>
@@ -45,37 +30,59 @@
                 <% end %>
 
 
-                <div class="level-item likes">
+                
                   <%= link_to '' do %>
                   <span class="icon"><i class="fa fa-heart"></i></span>
                   <span class="vote_count"></span>
                   <% end %>
-                  </div>
-                </div>
-              </div>
+             
 
-               <div class="user-data">
-          <div class="user-thumb">
-            <%= gravatar_image_tag(pictureshot.user.email.gsub('spam', 'mdeering'), alt: pictureshot.user.name, gravatar: { size: 20 }) %>
-          </div>
-           <div class="user-name"><%= pictureshot.user.name %></div>
+             <br>
+        
+         <td><%= link_to 'Show', pictureshot %></td>
 
-              <td><%= link_to 'Show', pictureshot %></td>
-        <td><%= link_to 'Edit', edit_pictureshot_path(pictureshot) %></td>
-        <td><%= link_to 'Destroy', pictureshot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            </div>
+      </div><!-- /.blog-post -->
+       
+         <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
+    <% end %>
+      
+     <hr>
+    </div><!-- /.blog-main -->
 
-            
-        </div>
-            <% end %>
-            
-             <%= link_to 'New Pictureshot', new_pictureshot_path %>
-            
-          </div>
-
-         
-        </div>
+    <aside class="col-md-4 blog-sidebar">
+      <div class="p-4 mb-3 bg-light rounded">
+        <h4 class="font-italic">About</h4>
+        <p class="mb-0">Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
       </div>
 
-    </main>
+      <div class="p-4">
+        <h4 class="font-italic">Archives</h4>
+        <ol class="list-unstyled mb-0">
+          <li><a href="#">March 2014</a></li>
+          <li><a href="#">February 2014</a></li>
+          <li><a href="#">January 2014</a></li>
+          <li><a href="#">December 2013</a></li>
+          <li><a href="#">November 2013</a></li>
+          <li><a href="#">October 2013</a></li>
+          <li><a href="#">September 2013</a></li>
+          <li><a href="#">August 2013</a></li>
+          <li><a href="#">July 2013</a></li>
+          <li><a href="#">June 2013</a></li>
+          <li><a href="#">May 2013</a></li>
+          <li><a href="#">April 2013</a></li>
+        </ol>
+      </div>
 
+      <div class="p-4">
+        <h4 class="font-italic">Elsewhere</h4>
+        <ol class="list-unstyled">
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Facebook</a></li>
+        </ol>
+      </div>
+    </aside><!-- /.blog-sidebar -->
+
+  </div><!-- /.row -->
+
+</main><!-- /.container -->
